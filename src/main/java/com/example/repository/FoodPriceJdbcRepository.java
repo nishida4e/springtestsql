@@ -44,6 +44,11 @@ public class FoodPriceJdbcRepository {
 		return food;
 	}
 
+	public void rollbacktest() {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", 10);
+		jdbcTemplate.update("UPDATE foodprice SET name=:name, price=99 WHERE id=:id", param);
+	}
+
 	public void delete(Integer id) {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		jdbcTemplate.update("DELETE FROM foodprice WHERE id=:id", param);

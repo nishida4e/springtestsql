@@ -5,10 +5,12 @@ import com.example.repository.FoodPriceJdbcRepository;
 import com.example.repository.FoodPriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class FoodPriceService {
 
 	@Autowired
@@ -17,6 +19,7 @@ public class FoodPriceService {
 
 	public List<FoodPrice> findAll() {
 		return fpRepo.findAll();
+		// return fpRepo.findByName("あ");
 	}
 
 	public FoodPrice findOne(Integer id) {
@@ -24,7 +27,9 @@ public class FoodPriceService {
 	}
 
 	public FoodPrice create(FoodPrice fp) {
-		return fpRepo.save(fp);
+		FoodPrice ret = fpRepo.save(fp);
+		// fpRepo.rollbacktest();
+		return ret;
 	}
 
 	public void delete(Integer id) {
