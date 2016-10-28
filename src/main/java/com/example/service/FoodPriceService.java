@@ -14,12 +14,12 @@ import java.util.List;
 public class FoodPriceService {
 
 	@Autowired
-	// FoodPriceRepository fpRepo;
-	FoodPriceJdbcRepository fpRepo;
+	FoodPriceRepository fpRepo;
+	//FoodPriceJdbcRepository fpRepo;
 
 	public List<FoodPrice> findAll() {
-		return fpRepo.findAll();
-		// return fpRepo.findByName("あ");
+		//return fpRepo.findAll();
+		return fpRepo.findByNameContaining("カレー");
 	}
 
 	public FoodPrice findOne(Integer id) {
