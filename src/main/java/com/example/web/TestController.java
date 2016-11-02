@@ -64,5 +64,13 @@ public class TestController {
 	String back() {
 		return "redirect:/";
 	}
+	
+	@PostMapping(path = "searchByName")
+	String searchByName(@RequestParam String name, Model model) {
+		List<FoodPrice> foodList = foodService.findByName(name);
+		model.addAttribute("foodModel", foodList);
+		model.addAttribute("name", name);
+		return "menulist";
+	}
 
 }

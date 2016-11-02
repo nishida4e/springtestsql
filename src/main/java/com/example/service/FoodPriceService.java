@@ -1,7 +1,6 @@
 package com.example.service;
 
 import com.example.domain.FoodPrice;
-import com.example.repository.FoodPriceJdbcRepository;
 import com.example.repository.FoodPriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +14,9 @@ public class FoodPriceService {
 
 	@Autowired
 	FoodPriceRepository fpRepo;
-	//FoodPriceJdbcRepository fpRepo;
 
 	public List<FoodPrice> findAll() {
-		//return fpRepo.findAll();
-		return fpRepo.findByNameContaining("カレー");
+		return fpRepo.findAll();
 	}
 
 	public FoodPrice findOne(Integer id) {
@@ -28,12 +25,15 @@ public class FoodPriceService {
 
 	public FoodPrice create(FoodPrice fp) {
 		FoodPrice ret = fpRepo.save(fp);
-		// fpRepo.rollbacktest();
 		return ret;
 	}
 
 	public void delete(Integer id) {
 		fpRepo.delete(id);
+	}
+	
+	public List<FoodPrice> findByName(String name) {
+		return fpRepo.findByNameContaining(name);
 	}
 
 }
